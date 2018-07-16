@@ -21,10 +21,6 @@ public class GameOfLifeControllerTest extends UnitTest {
         List<Boolean> rij2 = new ArrayList<>();
         List<Boolean> rij3 = new ArrayList<>();
 
-        testGrid.add(rij1);
-        testGrid.add(rij2);
-        testGrid.add(rij3);
-
         rij1.add(false);
         rij1.add(true);
         rij1.add(true);
@@ -34,6 +30,11 @@ public class GameOfLifeControllerTest extends UnitTest {
         rij3.add(true);
         rij3.add(false);
         rij3.add(true);
+
+        testGrid.add(rij1);
+        testGrid.add(rij2);
+        testGrid.add(rij3);
+
 
     }
 
@@ -54,9 +55,47 @@ public class GameOfLifeControllerTest extends UnitTest {
     }
 
     @Test
-    public void givenCoordinates1_1_ShouldReturnCorrectNumberOfNeighbours() throws Exception {
-        
+    public void givenCoordinates1_1_ShouldReturnInCorrectNumberOfNeighbours() throws Exception {
+        int row = 1;
+        int col = 1;
+        int actual = GameOfLifeController.counter(testGrid, row, col);
 
-        Assertions.assertThat(1).isEqualTo(1);
+        Assertions.assertThat(actual).isEqualTo(5);
+    }
+
+    @Test
+    public void givenCoordinates0_0_shouldReturnCorrectCounter() throws Exception {
+        int row = 0;
+        int col = 0;
+        int actual = GameOfLifeController.counter(testGrid, row, col);
+
+        Assertions.assertThat(actual).isEqualTo(2);
+
+    }
+    @Test
+    public void givenCoordinates2_2_shouldReturnCorrectCounter() throws Exception {
+        int row = 2;
+        int col = 2;
+        int actual = GameOfLifeController.counter(testGrid, row, col);
+
+        Assertions.assertThat(actual).isEqualTo(2);
+
+    }
+
+    @Test
+    public void givenCoordinates0_2_shouldReturnCorrectCounter() throws Exception {
+        int row = 0;
+        int col = 2;
+        int actual = GameOfLifeController.counter(testGrid,row,col);
+
+        Assertions.assertThat(actual).isEqualTo(3);
+    }
+    @Test
+    public void givenCoordinates2_0_shouldReturnCorrectCounter() throws Exception {
+        int row = 2;
+        int col = 0;
+        int actual = GameOfLifeController.counter(testGrid,row,col);
+
+        Assertions.assertThat(actual).isEqualTo(1);
     }
 }
